@@ -70,7 +70,7 @@ function hello(c) {
  * @returns {void}
  */
 function help(text) {
-  console.log(" hello!\n quit\n exit");
+  console.log(" hello\n hello x\n quit\n exit");
 }
 
 /**
