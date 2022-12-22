@@ -64,7 +64,7 @@ function hello() {
 }
 
 /**
- * prints all commends
+ * prints all commends for help
  *
  * @returns {void}
  */
