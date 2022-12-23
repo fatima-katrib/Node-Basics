@@ -44,6 +44,8 @@ function onDataReceived(text) {
     console.log(list());
   } else if (text.trim().split(" ")[0] === "add") {
     add(text);
+  } else if (text.trim().split(" ")[0] === "remove") {
+    remove(text);
   } else {
     unknownCommand(text);
   }
@@ -98,6 +100,20 @@ function add(text) {
     console.log("you need to write a task!");
   } else {
     taskArr.push(text.replace("add", ""));
+  }
+}
+/**
+ * remove task
+ *
+ * @returns {void}
+ */
+function remove(text) {
+  if (text.trim().split(" ").length === 1) {
+    taskArr.splice(-1);
+  } else if (text.trim().split(" ")[1] === "1") {
+    taskArr.shift();
+  } else if (text.trim().split(" ")[1] === "2") {
+    taskArr.splice(1, 1);
   }
 }
 /**
