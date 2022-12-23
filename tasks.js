@@ -116,6 +116,8 @@ function remove(text) {
     taskArr.shift();
   } else if (text.trim().split(" ")[1] === "2") {
     taskArr.splice(1, 1);
+  } else {
+    console.log("enter valid number after remove");
   }
 }
 /**
