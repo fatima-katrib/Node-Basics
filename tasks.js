@@ -38,6 +38,8 @@ function onDataReceived(text) {
     hello(text);
   } else if (text === "help\n") {
     help();
+  } else if (text === "list\n") {
+    console.log(list());
   } else {
     unknownCommand(text);
   }
@@ -71,6 +73,16 @@ function hello(c) {
  */
 function help(text) {
   console.log(" hello\n hello x\n quit\n exit");
+}
+
+/**
+ * Prints tasks
+ *
+ * @returns {void}
+ */
+function list() {
+  let taskArr = ["do your chem hw", "feed the dog"];
+  console.log(taskArr.map((e, i) => `${i + 1}. ${e}`).join("\n"));
 }
 
 /**
