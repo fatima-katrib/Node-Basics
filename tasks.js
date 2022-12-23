@@ -78,7 +78,9 @@ function hello(c) {
  * @returns {void}
  */
 function help(text) {
-  console.log(" hello\n hello x\n quit\n exit");
+  console.log(
+    " hello\n hello x\n list\n add\n remove\n remove 1\n remove 2\n quit\n exit"
+  );
 }
 
 /**
