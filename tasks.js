@@ -118,7 +118,7 @@ function remove(text) {
   } else if (text.trim().split(" ").length > taskArr.length) {
     console.log("enter valid number after remove");
   } else {
-    taskArr.splice(text.trim().split(" ")[1] - 1, 1);
+    taskArr.splice(parseInt(text.trim().split(" ")[1]) - 1, 1);
   }
 }
 
@@ -127,15 +127,15 @@ function remove(text) {
  *
  * @returns {void}
  */
-function edit(text) {
-  if (text.trim().split(" ").length === 1) {
-    console.log("enter a valid command");
-  } else if (text.trim().split(" ")[1] === "1") {
-    taskArr.shift().push(text.replace("edit 1", ""));
-  } else {
-    taskArr.splice(-1).push(text.replace("edit", ""));
-  }
-}
+// function edit(text) {
+//   if (text.trim().split(" ") === 1) {
+//     console.log("enter a valid command");
+//   } else if (text.trim().split(" ")[1] > taskArr.length) {
+//     console.log("enter valid number after edit");
+//   } else if (text.trim().split(" ")[1] === "1") {
+//     taskArr.shift().push(text.replace("edit 1", ""));
+//   }
+// }
 
 /**
  * Exits the application
