@@ -1,3 +1,5 @@
+let taskArr = [];
+
 /**
  * Starts the application
  * This is the function that is run when the app starts
@@ -40,6 +42,8 @@ function onDataReceived(text) {
     help();
   } else if (text === "list\n") {
     console.log(list());
+  } else if (text.trim().split(" ")[0] === "add") {
+    add(text);
   } else {
     unknownCommand(text);
   }
@@ -81,10 +85,21 @@ function help(text) {
  * @returns {void}
  */
 function list() {
-  let taskArr = ["do your chem hw", "feed the dog"];
   console.log(taskArr.map((e, i) => `${i + 1}. ${e}`).join("\n"));
 }
 
+/**
+ * add tasks
+ *
+ * @returns {void}
+ */
+function add(text) {
+  if (text.trim().split(" ").length === 1) {
+    console.log("you need to write a task!");
+  } else {
+    taskArr.push(text.replace("add", ""));
+  }
+}
 /**
  * Exits the application
  *
