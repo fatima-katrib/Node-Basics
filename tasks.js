@@ -127,15 +127,24 @@ function remove(text) {
  *
  * @returns {void}
  */
-// function edit(text) {
-//   if (text.trim().split(" ") === 1) {
-//     console.log("enter a valid command");
-//   } else if (text.trim().split(" ")[1] > taskArr.length) {
-//     console.log("enter valid number after edit");
-//   } else if (text.trim().split(" ")[1] === "1") {
-//     taskArr.shift().push(text.replace("edit 1", ""));
-//   }
-// }
+function edit(text) {
+  if (text.trim().split(" ").length === 1) {
+    console.log("enter a valid command");
+  } else if (isNaN(parseInt(text.trim().split(" ")[1]))) {
+    taskArr[taskArr.length - 1] = text.replace("edit ", "");
+    console.log("last task is edited");
+  } else {
+    if (text.trim().split(" ")[1] > taskArr.length) {
+      console.log("enter valid number after edit");
+    } else {
+      taskArr[parseInt(text.trim().split(" ")[1]) - 1] = text.substring(
+        6,
+        text.length
+      );
+      console.log("tasks are edited");
+    }
+  }
+}
 
 /**
  * Exits the application
