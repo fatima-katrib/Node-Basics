@@ -46,6 +46,8 @@ function onDataReceived(text) {
     add(text);
   } else if (text.trim().split(" ")[0] === "remove") {
     remove(text);
+  } else if (text.trim().split(" ")[0] === "edit") {
+    edit(text);
   } else {
     unknownCommand(text);
   }
@@ -104,6 +106,7 @@ function add(text) {
     taskArr.push(text.replace("add", ""));
   }
 }
+
 /**
  * remove task
  *
@@ -112,14 +115,28 @@ function add(text) {
 function remove(text) {
   if (text.trim().split(" ").length === 1) {
     taskArr.splice(-1);
-  } else if (text.trim().split(" ")[1] === "1") {
-    taskArr.shift();
-  } else if (text.trim().split(" ")[1] === "2") {
-    taskArr.splice(1, 1);
-  } else {
+  } else if (text.trim().split(" ").length > taskArr.length) {
     console.log("enter valid number after remove");
+  } else {
+    taskArr.splice(text.trim().split(" ")[1] - 1, 1);
   }
 }
+
+/**
+ * edit task
+ *
+ * @returns {void}
+ */
+function edit(text) {
+  if (text.trim().split(" ").length === 1) {
+    console.log("enter a valid command");
+  } else if (text.trim().split(" ")[1] === "1") {
+    taskArr.shift().push(text.replace("edit 1", ""));
+  } else {
+    taskArr.splice(-1).push(text.replace("edit", ""));
+  }
+}
+
 /**
  * Exits the application
  *
