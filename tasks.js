@@ -1,4 +1,9 @@
-let taskArr = [];
+let tasks = [
+  {
+    task: "do my hw",
+    done: true,
+  },
+];
 
 /**
  * Starts the application
@@ -91,7 +96,13 @@ function help(text) {
  * @returns {void}
  */
 function list() {
-  console.log(taskArr.map((e, i) => `${i + 1}. ${e}`).join("\n"));
+  tasks.map((e, i) => {
+    if (e.done === true) {
+      console.log(`[✓] ${i + 1}. ${e.task}`);
+    } else {
+      console.log(`[ ] ${i + 1}. ${e.task}`);
+    }
+  });
 }
 
 /**
@@ -103,7 +114,7 @@ function add(text) {
   if (text.trim().split(" ").length === 1) {
     console.log("you need to write a task!");
   } else {
-    taskArr.push(text.replace("add", ""));
+    tasks.push({ task: text.replace("add", "").trim(), done: false });
   }
 }
 
@@ -114,11 +125,11 @@ function add(text) {
  */
 function remove(text) {
   if (text.trim().split(" ").length === 1) {
-    taskArr.splice(-1);
-  } else if (text.trim().split(" ").length > taskArr.length) {
+    tasks.task.splice(-1);
+  } else if (text.trim().split(" ").length > tasks.length) {
     console.log("enter valid number after remove");
   } else {
-    taskArr.splice(parseInt(text.trim().split(" ")[1]) - 1, 1);
+    tasks.splice(parseInt(text.trim().split(" ")[1]) - 1, 1);
   }
 }
 
@@ -131,13 +142,13 @@ function edit(text) {
   if (text.trim().split(" ").length === 1) {
     console.log("enter a valid command");
   } else if (isNaN(parseInt(text.trim().split(" ")[1]))) {
-    taskArr[taskArr.length - 1] = text.replace("edit ", "");
+    tasks[tasks.length - 1].task = text.replace("edit ", "").trim();
     console.log("last task is edited");
   } else {
-    if (text.trim().split(" ")[1] > taskArr.length) {
+    if (text.trim().split(" ")[1] > tasks.length) {
       console.log("enter valid number after edit");
     } else {
-      taskArr[parseInt(text.trim().split(" ")[1]) - 1] = text.substring(
+      tasks[parseInt(text.trim().split(" ")[1]) - 1].task = text.substring(
         6,
         text.length
       );
