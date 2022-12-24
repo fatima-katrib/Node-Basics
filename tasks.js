@@ -91,7 +91,7 @@ function hello(c) {
  */
 function help(text) {
   console.log(
-    " hello\n hello x\n list\n add\n remove\n remove 1\n remove 2\n quit\n exit"
+    " hello\n hello x\n list\n add\n remove\n remove 1\n remove 2\n edit\n check\n uncheck\n quit\n exit"
   );
 }
 
