@@ -39,20 +39,25 @@ function startApp(name) {
  * @returns {void}
  */
 function onDataReceived(text) {
+  const textVerb = text.trim().split(" ")[0];
   if (text === "quit\n" || text === "exit\n") {
     quit();
-  } else if (text.trim().split(" ")[0] === "hello") {
+  } else if (textVerb === "hello") {
     hello(text);
   } else if (text === "help\n") {
     help();
   } else if (text === "list\n") {
     console.log(list());
-  } else if (text.trim().split(" ")[0] === "add") {
+  } else if (textVerb === "add") {
     add(text);
-  } else if (text.trim().split(" ")[0] === "remove") {
+  } else if (textVerb === "remove") {
     remove(text);
-  } else if (text.trim().split(" ")[0] === "edit") {
+  } else if (textVerb === "edit") {
     edit(text);
+  } else if (textVerb === "check") {
+    check(text);
+  } else if (textVerb === "uncheck") {
+    uncheck(text);
   } else {
     unknownCommand(text);
   }
@@ -97,11 +102,9 @@ function help(text) {
  */
 function list() {
   tasks.map((e, i) => {
-    if (e.done === true) {
-      console.log(`[✓] ${i + 1}. ${e.task}`);
-    } else {
-      console.log(`[ ] ${i + 1}. ${e.task}`);
-    }
+    e.done === true
+      ? console.log(`[✓] ${i + 1}. ${e.task}`)
+      : console.log(`[ ] ${i + 1}. ${e.task}`);
   });
 }
 
@@ -111,11 +114,9 @@ function list() {
  * @returns {void}
  */
 function add(text) {
-  if (text.trim().split(" ").length === 1) {
-    console.log("you need to write a task!");
-  } else {
-    tasks.push({ task: text.replace("add", "").trim(), done: false });
-  }
+  text.trim().split(" ").length === 1
+    ? console.log("you need to write a task!")
+    : tasks.push({ task: text.replace("add", "").trim(), done: false });
 }
 
 /**
@@ -125,7 +126,7 @@ function add(text) {
  */
 function remove(text) {
   if (text.trim().split(" ").length === 1) {
-    tasks.task.splice(-1);
+    tasks.splice(-1);
   } else if (text.trim().split(" ").length > tasks.length) {
     console.log("enter valid number after remove");
   } else {
@@ -155,6 +156,28 @@ function edit(text) {
       console.log("tasks are edited");
     }
   }
+}
+
+/**
+ * check tasks
+ *
+ * @returns {void}
+ */
+function check(text) {
+  text.trim().split(" ").length === 1
+    ? console.log("you need to write task number!")
+    : (tasks[parseInt(text.trim().split(" ")[1]) - 1].done = true);
+}
+
+/**
+ * check tasks
+ *
+ * @returns {void}
+ */
+function uncheck(text) {
+  text.trim().split(" ").length === 1
+    ? console.log("you need to write task number!")
+    : (tasks[parseInt(text.trim().split(" ")[1]) - 1].done = false);
 }
 
 /**
